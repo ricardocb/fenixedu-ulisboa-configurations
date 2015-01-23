@@ -1,0 +1,6 @@
+dbAlias=//localhost:3306/fenix_ul
+dbUsername=root
+dbPassword=
+
+updateRepositoryStructureIfNeeded=true
+canCreateDomainMetaObjects=false

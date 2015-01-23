@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.fenixedu.ulisboa</groupId>
+		<artifactId>configurations</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>fenixedu-ulisboa-theme</artifactId>
+	<packaging>jar</packaging>
+
+	<name>FenixEdu ULisboa Theme</name>
+	<url>http://fenixedu.org</url>
+	<inceptionYear>2014</inceptionYear>
+	<properties>
+		<maven.deploy.skip>false</maven.deploy.skip>
+	</properties>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.7.0.1.1</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/less/themes/ulisboa/less</sourceDirectory>
+					<outputDirectory>${project.build.directory}/classes/META-INF/resources/themes/ulisboa/css</outputDirectory>
+					<compress>true</compress>
+					<includes>
+						<include>style.less</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/webapp</directory>
+				<targetPath>META-INF/resources</targetPath>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>
