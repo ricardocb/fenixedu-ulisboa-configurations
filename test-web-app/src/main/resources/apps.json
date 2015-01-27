@@ -1,0 +1,30 @@
+{
+    "apps": [
+        {
+            "title": {
+                "pt-PT": "Página Inicial",
+                "en-GB": "Home Page"
+            },
+            "description": {
+                "pt-PT": "Página Inicial",
+                "en-GB": "Home Page"
+            },
+            "accessExpression": "anyone",
+            "path": "",
+            "functionalities": [
+	             {
+	                    "title": {
+	                        "pt-PT": "Página Inicial",
+	                        "en-GB": "Home Page"
+	                    },
+	                    "description": {
+	                        "pt-PT": "Página Inicial",
+	                        "en-GB": "Home Page"
+	                    },
+	                    "accessExpression": "anyone",
+	                    "path": ""
+	                }
+            ]
+        }
+    ]
+}
