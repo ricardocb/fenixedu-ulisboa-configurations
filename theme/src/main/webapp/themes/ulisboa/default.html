@@ -131,10 +131,14 @@
 		{% endif %}
 		{% lazyFor item in root.parent.userMenuStream %}
 			<ul class="nav nav-pills nav-stacked">
-				<li class="navheader"><strong>{{item.title.content}}</strong></li>
-				{% lazyFor child in item.userMenuStream %}
-					<li><a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></li>
-				{% endLazyFor %}
+				{% if item.userMenu is empty %}
+					<a href="{{contextPath}}{{item.fullPath}}"><li class="navheader"><strong>{{item.title.content}}</strong></li></a>
+				{% else %}
+					<li class="navheader"><strong>{{item.title.content}}</strong></li>
+					{% lazyFor child in item.userMenuStream %}
+						<li><a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></li>
+					{% endLazyFor %}
+				{% endif %}
 			</ul>
 		{% endLazyFor %}
 		</nav>
