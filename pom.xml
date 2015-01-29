@@ -12,7 +12,7 @@
 
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
-		<version.ulisboa-repo.location>!!!insert location here!!!</version.ulisboa-repo.location>
+		<version.ulisboa-repo.location>http://ul-nexjen.ulisboa.pt:8081</version.ulisboa-repo.location>
 	</properties>
 
 	<modules>
