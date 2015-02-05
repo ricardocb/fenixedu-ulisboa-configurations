@@ -55,6 +55,10 @@
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
+			<resource>
+				<directory>src/main/less</directory>
+				<targetPath>less</targetPath>
+			</resource>
 		</resources>
 	</build>
 
