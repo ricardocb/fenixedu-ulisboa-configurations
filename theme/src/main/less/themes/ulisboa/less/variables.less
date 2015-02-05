@@ -1,3 +1,4 @@
+@import "branding.less";
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
@@ -8,14 +9,12 @@
 @gray-light:             lighten(#000, 60%);   // #999
 @gray-lighter:           #fefefe;//lighten(#000, 93.5%); // #eee
 
-@brand-primary:         #212121;
+//## @brand-primary imported from branding.less
+//@brand-primary:         #212121; 
 @brand-success:         #00B30C;
 @brand-info:            #106F85;
 @brand-warning:         #B25400;
 @brand-danger:          #E82C0C;
-
-@custom-primary:		#FF100F;
-@custom-secondary:		#FFE189;
 
 
 //== Scaffolding
@@ -23,7 +22,8 @@
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               lighten(@brand-primary, 75%); //#f1f1f1;
+//## @body-bg imported from branding.less
+//@body-bg:               lighten(@brand-primary, 75%); //#f1f1f1;
 //** Global text color on `<body>`.
 @text-color:            @gray-darker;
 
