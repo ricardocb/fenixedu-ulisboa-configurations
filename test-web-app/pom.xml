@@ -53,7 +53,7 @@
 	<repositories>
 		<repository>
 			<id>ulisboa-repo</id>
-			<url>${ulisboa-repo.location}/nexus/content/groups/public/</url>
+			<url>http://ul-nexjen.ulisboa.pt:8081/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 </project>

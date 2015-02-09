@@ -11,14 +11,14 @@
 	<name>ULisboa Configurations</name>
 
 	<properties>
-		<maven.deploy.skip>true</maven.deploy.skip>
 		<version.ulisboa-repo.location>http://ul-nexjen.ulisboa.pt:8081</version.ulisboa-repo.location>
 	</properties>
 
 	<modules>
 		<module>theme</module>
+		<module>theme-configurator</module>
 		<module>web-app-project</module>
-		<module>test-web-app</module>
+
 	</modules>
 
 	<distributionManagement>
@@ -32,6 +32,13 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>ulisboa-repo</id>
+			<url>${version.ulisboa-repo.location}/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<repositories>
 		<repository>
 			<id>ulisboa-repo</id>
