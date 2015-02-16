@@ -49,6 +49,11 @@
 			<artifactId>default-theme</artifactId>
 			<version>${version.org.fenixedu.bennu}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.fenixedu.ulisboa.themes</groupId>
+			<artifactId>themes-agregator</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>

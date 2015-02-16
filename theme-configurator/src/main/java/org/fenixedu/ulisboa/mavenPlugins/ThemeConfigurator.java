@@ -11,11 +11,16 @@ import static org.twdata.maven.mojoexecutor.MojoExecutor.name;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.plugin;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.version;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
@@ -97,7 +102,8 @@ public class ThemeConfigurator extends AbstractMojo {
                 return;
             }
 
-            copyContents(jarFile);
+            copyLessContents(jarFile);
+            copyStaticResources(jarFile);
 
             String extractedLessDirectory =
                     mavenProject.getBuild().getDirectory() + File.separator + "less" + File.separator + "themes" + File.separator
@@ -151,7 +157,7 @@ public class ThemeConfigurator extends AbstractMojo {
 
     }
 
-    public void copyContents(JarFile jar) throws IOException {
+    public void copyLessContents(JarFile jar) throws IOException {
         File folder = new File(mavenProject.getBuild().getDirectory() + File.separator + "less");
         folder.mkdirs();
 
@@ -170,13 +176,56 @@ public class ThemeConfigurator extends AbstractMojo {
                 continue;
             }
 
-            InputStream is = jar.getInputStream(file);
             FileOutputStream fos = new FileOutputStream(f);
+            InputStream is = jar.getInputStream(file);
             while (is.available() > 0) {
                 fos.write(is.read());
             }
-            fos.close();
             is.close();
+            fos.close();
+        }
+    }
+
+    //TODO Almost copy pasted from copyLessContents. Refactor
+    public void copyStaticResources(JarFile jar) throws IOException {
+        File folder = new File(mavenProject.getBuild().getDirectory() + File.separator + "classes/META-INF/resources/themes/");
+        folder.mkdirs();
+
+        Enumeration<JarEntry> enumEntries = jar.entries();
+        while (enumEntries.hasMoreElements()) {
+            JarEntry file = enumEntries.nextElement();
+            //Only copy static resources of the theme
+            if (!file.getName().startsWith("META-INF/resources/themes/") || file.getName().endsWith("style.css")) {
+                continue;
+            }
+            String pathname =
+                    mavenProject.getBuild().getDirectory() + File.separator + "classes" + File.separator
+                            + file.getName().replaceAll("ulisboa", mavenProject.getArtifactId());
+            File f = new File(pathname);
+
+            if (file.isDirectory()) {
+                f.mkdir();
+                continue;
+            }
+
+            FileOutputStream fos = new FileOutputStream(f);
+            if (file.getName().endsWith("html")) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(jar.getInputStream(file)));
+                String line = null;
+                while ((line = bufferedReader.readLine()) != null) {
+                    if (file.getName().endsWith("html")) {
+                        fos.write(line.replaceAll("ulisboa", mavenProject.getArtifactId() + '\n').getBytes());
+                    }
+                }
+                bufferedReader.close();
+            } else {
+                InputStream is = jar.getInputStream(file);
+                while (is.available() > 0) {
+                    fos.write(is.read());
+                }
+                is.close();
+            }
+            fos.close();
         }
     }
 
@@ -185,8 +234,8 @@ public class ThemeConfigurator extends AbstractMojo {
         Xpp3Dom configuration =
                 configuration(
                         element(name("sourceDirectory"), sourceDirectory),
-                        element(name("outputDirectory"), "${project.basedir}/src/main/webapp/themes/" + dependedThemeName
-                                + "/css"), element(name("compress"), "true"),
+                        element(name("outputDirectory"), "${project.basedir}/target/classes/META-INF/resources/themes/"
+                                + mavenProject.getArtifactId() + "/css"), element(name("compress"), "true"),
                         element(name("includes"), element(name("include"), "style.less")));
         executeMojo(plugin, goal("compile"), configuration, executionEnvironment(mavenProject, mavenSession, pluginManager));
     }
