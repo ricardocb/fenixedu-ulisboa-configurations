@@ -14,19 +14,28 @@
 	<meta name="Keywords" content="FenixEdu, open-source, academic, information, platform, academic administration, higher education, e-learning" />
 	<meta name="Language" content="{{currentLocale}}" />
 	<meta name="Robots" content="all" />
-	<meta name="Author" content="FenixEdu" />
-	<meta name="Email" content="hello@fenixedu.org" />
-	<meta name="Copyright" content="Técnico Lisboa — Instituto Superior Técnico" />
-	<meta name="Distribution" content="Global" />
-	<meta name="Rating" content="General" />
 
-	<!-- OpenGraph Specific Metas -->
-	<meta property="og:title" content="FenixEdu™" />
-	<meta property="og:type" content="application" />
-	<meta property="og:url" content="http://www.fenixedu.org" />
-	<meta property="og:site_name" content="FenixEdu" />
-	<meta property="og:description" content="FenixEdu™ is an open-source academic information platform." />
-	<meta property="fb:profile_id" content="379238245509413" />
+	{% block copyrightMeta %}
+    <!--
+    <meta name="Author" content="FenixEdu" />
+    <meta name="Email" content="hello@fenixedu.org" />
+    <meta name="Copyright" content="Técnico Lisboa - Instituto Superior Técnico" />
+    <meta name="Distribution" content="Global" />
+    <meta name="Rating" content="General" />
+    -->
+    {% endblock copyrightMeta %}
+
+    <!-- OpenGraph Specific Metas -->
+    {% block openGraphMeta %}
+    <!--
+    <meta property="og:title" content="FenixEdu™" />
+    <meta property="og:type" content="application" />
+    <meta property="og:url" content="http://www.fenixedu.org" />
+    <meta property="og:site_name" content="FenixEdu" />
+    <meta property="og:description" content="FenixEdu Learning is an open-source academic information platform." />
+    <meta property="fb:profile_id" content="379238245509413" />
+    -->
+    {% endblock openGraphMeta %}
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
@@ -147,11 +156,11 @@
 		{% block footer %}
 		<footer class="clearfix" role="contentinfo" >
 				<div class="col-sm-2 text-center">
-					<a class="brand" href="http://fenixedu.org"><img src="{{contextPath}}/themes/ulisboa/img/logo_fenixedu_footer.svg" alt="Powered by FenixEdu"></a>
+					<a class="brand" href="http://www.qub-it.com/homepage"><img src="{{contextPath}}/themes/ulisboa/img/fenixedu-qubit.png" alt="FenixEdu brought to you by qubIT"></a>
 				</div>
 				<p class="col-sm-10">
 					<span>{{config.applicationCopyright.content}}</span>
-					<a href="mailto:{{config.supportEmailAddress}}">{{i18n('resources.ulisboaThemeResources', 'link.support')}}</a>
+					<a href="mailto:{{config.supportEmailAddress}}">{{i18n('resources.ULisboaThemeResources', 'link.support')}}</a>
 				</p>
 		</footer>
 		{% endblock %}
