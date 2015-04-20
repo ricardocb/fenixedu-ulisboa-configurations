@@ -17,7 +17,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.academic>4.2.0-SNAPSHOT</version.academic>
+		<version.academic>5.0.0-SNAPSHOT</version.academic>
 		<version.learning>1.1.0-SNAPSHOT</version.learning>
 		<version.cms>1.1.0-SNAPSHOT</version.cms>
 		<version.spaces>1.4.0-SNAPSHOT</version.spaces>
