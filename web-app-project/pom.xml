@@ -50,6 +50,18 @@
 	<build>
 		<plugins>
 			<plugin>
+                               <groupId>com.qubit.solution.fenixedu</groupId>
+                               <artifactId>bennu-webservices-plugin</artifactId>
+                               <version>1.0.0-SNAPSHOT</version>
+                               <executions>
+                                       <execution>
+                                               <goals>
+                                                       <goal>jaxws-merger</goal>
+                                               </goals>
+                                       </execution>
+                               </executions>
+                       </plugin>
+			<plugin>
 				<groupId>pt.ist</groupId>
 				<artifactId>ff-maven-plugin</artifactId>
 				<version>${version.pt.ist.ff.maven.plugin}</version>
