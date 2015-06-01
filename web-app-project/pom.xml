@@ -19,6 +19,7 @@
 		<java.compilation.target.version>1.8</java.compilation.target.version>
 		<version.org.apache.maven.plugins.maven.compiler.plugin>3.1</version.org.apache.maven.plugins.maven.compiler.plugin>
 		<maven.deploy.skip>false</maven.deploy.skip>
+		<fenix.framework.generator.classname>pt.ist.fenixframework.backend.jvstmojb.codeGenerator.FenixCodeGeneratorOneBoxPerObject</fenix.framework.generator.classname>
 	</properties>
 
 	<name>UL web-app-project</name>
@@ -155,7 +156,7 @@
 						</dependency>
 					</dependencies>
 					<configuration>
-						<codeGeneratorClassName>pt.ist.fenixframework.backend.jvstmojb.codeGenerator.FenixCodeGeneratorOneBoxPerObject</codeGeneratorClassName>
+						<codeGeneratorClassName>${fenix.framework.generator.classname}</codeGeneratorClassName>
 					</configuration>
 				</plugin>
 			</plugins>
