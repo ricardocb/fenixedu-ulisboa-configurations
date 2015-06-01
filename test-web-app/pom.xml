@@ -1,110 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.fenixedu.ulisboa</groupId>
-		<artifactId>web-app-project</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath></relativePath>
-	</parent>
+    <parent>
+        <groupId>org.fenixedu.ulisboa</groupId>
+        <artifactId>web-app-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath></relativePath>
+    </parent>
 
-	<artifactId>test-web-app</artifactId>
-	<packaging>war</packaging>
+    <artifactId>test-web-app</artifactId>
+    <packaging>war</packaging>
 
-	<name>test-web-app</name>
+    <name>test-web-app</name>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.academic>5.0.0-SNAPSHOT</version.academic>
-		<version.learning>1.1.0-SNAPSHOT</version.learning>
-		<version.cms>1.1.0-SNAPSHOT</version.cms>
-		<version.spaces>1.4.0-SNAPSHOT</version.spaces>
-		<ulisboa-repo.location></ulisboa-repo.location>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.academic>5.0.0-SNAPSHOT</version.academic>
+        <version.learning>1.1.0-SNAPSHOT</version.learning>
+        <version.cms>1.1.0-SNAPSHOT</version.cms>
+        <version.spaces>1.4.0-SNAPSHOT</version.spaces>
+        <ulisboa-repo.location></ulisboa-repo.location>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>fenixedu-academic</artifactId>
-			<version>${version.academic}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>fenixedu-spaces</artifactId>
-			<version>${version.spaces}</version>
-		</dependency>
-		<!-- dependency> <groupId>org.fenixedu</groupId> <artifactId>fenixedu-cms</artifactId> 
-			<version>${version.cms}</version> </dependency -->
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>fenixedu-learning</artifactId>
-			<version>${version.learning}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>default-theme</artifactId>
-			<version>${version.org.fenixedu.bennu}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fenixedu.ulisboa.themes</groupId>
-			<artifactId>themes-agregator</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>fenixedu-treasury</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.fenixedu</groupId>
-			<artifactId>fenixedu-oddjet-reports</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.odftoolkit</groupId>
-					<artifactId>odfdom-java</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.odftoolkit</groupId>
-			<artifactId>odfdom-java</artifactId>
-			<version>0.8.8-incubating</version>
-		</dependency>
+    <dependencies>
         <dependency>
-               <groupId>org.fenixedu.ulisboa</groupId>
-               <artifactId>fenixedu-ulisboa-sas-integration</artifactId>
-               <version>1.0.0-SNAPSHOT</version>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>fenixedu-academic</artifactId>
+            <version>${version.academic}</version>
         </dependency>
         <dependency>
-               <groupId>com.qubit.solution.fenixedu</groupId>
-               <artifactId>fenixedu-ulisboa-cgdIntegration</artifactId>
-               <version>1.0.0-SNAPSHOT</version>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>fenixedu-spaces</artifactId>
+            <version>${version.spaces}</version>
+        </dependency>
+        <!-- dependency> <groupId>org.fenixedu</groupId> <artifactId>fenixedu-cms</artifactId> 
+            <version>${version.cms}</version> </dependency -->
+        <dependency>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>fenixedu-learning</artifactId>
+            <version>${version.learning}</version>
         </dependency>
         <dependency>
-        	<groupId>pt.ist</groupId>
-			<artifactId>standards</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>default-theme</artifactId>
+            <version>${version.org.fenixedu.bennu}</version>
         </dependency>
-	</dependencies>
-	<repositories>
-		<repository>
-			<id>ulisboa-repo</id>
-			<url>http://nexjen.ulisboa.pt/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
-	<build>
-		<plugins>
-			<plugin>
-			    <groupId>org.apache.tomcat.maven</groupId>
-			    <artifactId>tomcat7-maven-plugin</artifactId>
-			    <version>2.2</version>
-			    <configuration>
-				    <contextFile>tomcat-context.xml</contextFile>
-			    </configuration>
-			</plugin>
-		</plugins>
-	</build>
+        <dependency>
+            <groupId>org.fenixedu.ulisboa.themes</groupId>
+            <artifactId>themes-agregator</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>fenixedu-treasury</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>fenixedu-oddjet-reports</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.odftoolkit</groupId>
+                    <artifactId>odfdom-java</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.odftoolkit</groupId>
+            <artifactId>odfdom-java</artifactId>
+            <version>0.8.8-incubating</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fenixedu.ulisboa</groupId>
+            <artifactId>fenixedu-ulisboa-sas-integration</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qubit.solution.fenixedu</groupId>
+            <artifactId>fenixedu-ulisboa-cgdIntegration</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>standards</artifactId>
+            <version>1.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qubit.solution.fenixedu</groupId>
+            <artifactId>bennu-versioning-code-generator</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.qubit.solution.fenixedu</groupId>
+            <artifactId>bennu-versioning-runtime</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>ulisboa-repo</id>
+            <url>http://nexjen.ulisboa.pt/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <contextFile>tomcat-context.xml</contextFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
