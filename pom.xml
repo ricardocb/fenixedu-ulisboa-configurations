@@ -38,7 +38,7 @@
 	<repositories>
 		<repository>
 			<id>ulisboa-repo</id>
-			<url>http://ul-nexjen.ulisboa.pt:8081/content/groups/public/</url>
+			<url>http://ul-nexjen.ulisboa.pt:8081/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
 			<id>fenixedu-maven-repository</id>
