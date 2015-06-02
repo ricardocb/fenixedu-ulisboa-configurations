@@ -19,7 +19,8 @@
 		<java.compilation.target.version>1.8</java.compilation.target.version>
 		<version.org.apache.maven.plugins.maven.compiler.plugin>3.1</version.org.apache.maven.plugins.maven.compiler.plugin>
 		<maven.deploy.skip>false</maven.deploy.skip>
-		<fenix.framework.generator.classname>pt.ist.fenixframework.backend.jvstmojb.codeGenerator.FenixCodeGeneratorOneBoxPerObject</fenix.framework.generator.classname>
+		<fenix.framework.generator.classname>com.qubit.extension.fenixframework.VersioningGeneratorOneBoxPerObject</fenix.framework.generator.classname>
+		
 	</properties>
 
 	<name>UL web-app-project</name>
@@ -46,6 +47,19 @@
 			<artifactId>bennu-client</artifactId>
 			<version>${version.org.fenixedu.bennu}</version>
 		</dependency>
+
+		<!-- Versioning Dependencies -->
+		<dependency>
+            <groupId>com.qubit.solution.fenixedu</groupId>
+            <artifactId>bennu-versioning-code-generator</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.qubit.solution.fenixedu</groupId>
+            <artifactId>bennu-versioning-runtime</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
