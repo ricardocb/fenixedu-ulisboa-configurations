@@ -20,6 +20,7 @@
 		<version.academic>5.0.0-SNAPSHOT</version.academic>
 		<version.learning>1.2.0-SNAPSHOT</version.learning>
 		<version.spaces>1.6.1</version.spaces>
+		<version.org.fenixedu.bennu>3.4.1</version.org.fenixedu.bennu>
 	</properties>
 
 	<dependencies>
