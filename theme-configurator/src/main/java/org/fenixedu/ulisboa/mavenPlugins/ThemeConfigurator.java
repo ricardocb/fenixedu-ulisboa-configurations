@@ -11,16 +11,13 @@ import static org.twdata.maven.mojoexecutor.MojoExecutor.name;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.plugin;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.version;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
@@ -214,7 +211,8 @@ public class ThemeConfigurator extends AbstractMojo {
                 String line = null;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (file.getName().endsWith("html")) {
-                        fos.write(line.replaceAll("ulisboa", mavenProject.getArtifactId() + '\n').getBytes());
+                        //All occurrences of {{school-theme}} will be replaced by artifactID of the specific project  
+                        fos.write(line.replaceAll("\\{\\{school-theme\\}\\}", mavenProject.getArtifactId() + '\n').getBytes());
                     }
                 }
                 bufferedReader.close();

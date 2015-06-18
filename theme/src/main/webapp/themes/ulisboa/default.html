@@ -43,8 +43,8 @@
     <title>{% block title %}{{ functionality.title.content }} · {{ selectedTopLevel.title.content }}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/ulisboa/css/general.css">
-    <link href="{{contextPath}}/themes/ulisboa/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="{{contextPath}}/themes/{{school-theme}}/css/general.css">
+    <link href="{{contextPath}}/themes/{{school-theme}}/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -53,7 +53,7 @@
     <![endif]-->
 
     <script src="{{contextPath}}/bennu-portal/js/jquery.min.js"></script>
-	<script src="{{contextPath}}/themes/ulisboa/js/bootstrap.min.js"></script>
+	<script src="{{contextPath}}/themes/{{school-theme}}/js/bootstrap.min.js"></script>
 	<script> setLang = function(l) {
 		$.post('{{contextPath}}/api/bennu-core/profile/locale/' + l.replace('_', '-')).always(function() { location.reload(); });
 	}
@@ -164,11 +164,11 @@
 		{% block footer %}
 		<footer class="clearfix" role="contentinfo" >
 				<div class="col-sm-2 text-center">
-					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/ulisboa/img/ul-banner.png" alt="FenixEdu at ULisboa"></a>
+					<a class="brand" href="http://www.ulisboa.pt/"><img src="{{contextPath}}/themes/{{school-theme}}/img/ul-banner.png" alt="FenixEdu at {{school-theme}}"></a>
 				</div>
 				<p class="col-sm-10">
 					<span>{{config.applicationCopyright.content}}</span>
-					<a href="mailto:{{config.supportEmailAddress}}">{{i18n('resources.ULisboaThemeResources', 'link.support')}}</a>
+					<a href="mailto:{{config.supportEmailAddress}}">{{i18n('resources.{{school-theme}}ThemeResources', 'link.support')}}</a>
 				</p>
 		</footer>
 		{% endblock %}
