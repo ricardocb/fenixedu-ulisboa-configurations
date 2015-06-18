@@ -1,1 +1,0 @@
-<h1>Bem-vindo ao ambiente de qualidade</h1>
