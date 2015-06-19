@@ -141,7 +141,7 @@
 			</div>
 		</main>
 		<div class="col-sm-2 col-sm-pull-10 panel-group" id="accordion">
-		{% if functionality.parent.parent == config.menu %}
+		{% if functionality.parent.parent == config.menu %} 
 			{% set root = functionality %}
 		{% else %}
 			{% set root = functionality.parent %}
@@ -169,7 +169,7 @@
 					<div id="collapse{{item.externalId}}" class="panel-collapse collapse ">
 						{% endif %}
 					{% endif %}
-						<div class="panel-body" style="margin-bottom:-20px;">
+						<div class="panel-body" style="margin-bottom:-0px;">
 							<table class="table">
 						{% lazyFor child in item.userMenuStream %}
 							{%if child == functionality %}
