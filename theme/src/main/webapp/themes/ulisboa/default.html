@@ -99,7 +99,7 @@
 	{% endblock %}
 
 	<header class="clearfix" role="banner">
-		<div class="col-sm-2 logo-container text-center">
+		<div class="col-sm-2 logo-container text-center" style="padding-bottom: 5px;">
 			<button type="button" class="navbar-toggle hamburger" data-toggle="collapse" data-target="#topNav">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -140,25 +140,55 @@
 				{{body}}
 			</div>
 		</main>
-		<nav class="col-sm-2 col-sm-pull-10" id="context">
+		<div class="col-sm-2 col-sm-pull-10 panel-group" id="accordion">
 		{% if functionality.parent.parent == config.menu %}
 			{% set root = functionality %}
 		{% else %}
 			{% set root = functionality.parent %}
 		{% endif %}
 		{% lazyFor item in root.parent.userMenuStream %}
-			<ul class="nav nav-pills nav-stacked">
+			 <div class="panel panel-default">
 				{% if item.userMenu is empty %}
-					<a href="{{contextPath}}{{item.fullPath}}"><li class="navheader"><strong>{{item.title.content}}</strong></li></a>
+				    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="{{contextPath}}{{item.fullPath}}"><li  class="navheader" >{{item.title.content}}</li></a>
+                        </h4>
+                    </div>
 				{% else %}
-					<li class="navheader"><strong>{{item.title.content}}</strong></li>
-					{% lazyFor child in item.userMenuStream %}
-						<li><a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></li>
-					{% endLazyFor %}
+					<div class="panel-heading">
+                        <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{item.externalId}}">{{item.title.content}}</a>
+                        </h4>
+                    </div>
+					{% if functionality.parent == item %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse in">
+					{% else %}
+						{% if functionality.parent.parent == item %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse in">
+						{% else %}
+					<div id="collapse{{item.externalId}}" class="panel-collapse collapse ">
+						{% endif %}
+					{% endif %}
+						<div class="panel-body" style="margin-bottom:-20px;">
+							<table class="table">
+						{% lazyFor child in item.userMenuStream %}
+							{%if child == functionality %}
+								<tr class="danger">
+							{%else%}
+								<tr >
+							{%endif%}
+                                    <td>
+                                        <span class="glyphicon glyphicon-cog text-primary"></span> <a href="{{contextPath}}{{child.fullPath}}">{{child.title.content}}</a></a>
+                                    </td>
+                                </tr>
+						{% endLazyFor %}
+							</table>
+                        </div>
+                    </div>
 				{% endif %}
-			</ul>
+			</div>
 		{% endLazyFor %}
-		</nav>
+		</div>
 		{% endblock %}
 	</div>
 		{% block footer %}
@@ -173,4 +203,129 @@
 		</footer>
 		{% endblock %}
 	</body>
+	
+	<script>
+
+;
+(function ($, window, document, undefined) {
+    if ($('ul.mtree').length) {
+        var collapsed = true;
+        var close_same_level = true;
+        var duration = 400;
+        var listAnim = true;
+        var easing = 'easeOutQuart';
+        $('.mtree ul').css({
+            'overflow': 'hidden',
+            'height': collapsed ? 0 : 'auto',
+            'display': collapsed ? 'none' : 'block'
+        });
+        var node = $('.mtree li:has(ul)');
+        node.each(function (index, val) {
+            $(this).children(':first-child').css('cursor', 'pointer');
+            $(this).addClass('mtree-node mtree-' + (collapsed ? 'closed' : 'open'));
+            $(this).children('ul').addClass('mtree-level-' + ($(this).parentsUntil($('ul.mtree'), 'ul').length + 1));
+        });
+        $('.mtree li > *:first-child').on('click.mtree-active', function (e) {
+            if ($(this).parent().hasClass('mtree-closed')) {
+                $('.mtree-active').not($(this).parent()).removeClass('mtree-active');
+                $(this).parent().addClass('mtree-active');
+            } else if ($(this).parent().hasClass('mtree-open')) {
+                $(this).parent().removeClass('mtree-active');
+            } else {
+                $('.mtree-active').not($(this).parent()).removeClass('mtree-active');
+                $(this).parent().toggleClass('mtree-active');
+            }
+        });
+        node.children(':first-child').on('click.mtree', function (e) {
+            var el = $(this).parent().children('ul').first();
+            var isOpen = $(this).parent().hasClass('mtree-open');
+            if ((close_same_level || $('.csl').hasClass('active')) && !isOpen) {
+                var close_items = $(this).closest('ul').children('.mtree-open').not($(this).parent()).children('ul');
+                if ($.Velocity) {
+                    close_items.velocity({ height: 0 }, {
+                        duration: duration,
+                        easing: easing,
+                        display: 'none',
+                        delay: 100,
+                        complete: function () {
+                            setNodeClass($(this).parent(), true);
+                        }
+                    });
+                } else {
+                    close_items.delay(100).slideToggle(duration, function () {
+                        setNodeClass($(this).parent(), true);
+                    });
+                }
+            }
+            el.css({ 'height': 'auto' });
+            if (!isOpen && $.Velocity && listAnim)
+                el.find(' > li, li.mtree-open > ul > li').css({ 'opacity': 0 }).velocity('stop').velocity('list');
+            if ($.Velocity) {
+                el.velocity('stop').velocity({
+                    height: isOpen ? [
+                        0,
+                        el.outerHeight()
+                    ] : [
+                        el.outerHeight(),
+                        0
+                    ]
+                }, {
+                    queue: false,
+                    duration: duration,
+                    easing: easing,
+                    display: isOpen ? 'none' : 'block',
+                    begin: setNodeClass($(this).parent(), isOpen),
+                    complete: function () {
+                        if (!isOpen)
+                            $(this).css('height', 'auto');
+                    }
+                });
+            } else {
+                setNodeClass($(this).parent(), isOpen);
+                el.slideToggle(duration);
+            }
+            e.preventDefault();
+        });
+        function setNodeClass(el, isOpen) {
+            if (isOpen) {
+                el.removeClass('mtree-open').addClass('mtree-closed');
+            } else {
+                el.removeClass('mtree-closed').addClass('mtree-open');
+            }
+        }
+        if ($.Velocity && listAnim) {
+            $.Velocity.Sequences.list = function (element, options, index, size) {
+                $.Velocity.animate(element, {
+                    opacity: [
+                        1,
+                        0
+                    ],
+                    translateY: [
+                        0,
+                        -(index + 1)
+                    ]
+                }, {
+                    delay: index * (duration / size / 2),
+                    duration: duration,
+                    easing: easing
+                });
+            };
+        }
+        if ($('.mtree').css('opacity') == 0) {
+            if ($.Velocity) {
+                $('.mtree').css('opacity', 1).children().css('opacity', 0).velocity('list');
+            } else {
+                $('.mtree').show(200);
+            }
+        }
+    }
+}(jQuery, this, this.document));
+
+
+	$(document).ready(function() {
+		
+	});
+</script>
+
+
 </html>
